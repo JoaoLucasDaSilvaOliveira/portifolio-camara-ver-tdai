@@ -1,0 +1,27 @@
+{
+  "name": "vitrine-civica-litoral",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc --noEmit -p tsconfig.app.json && vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "qrcode.vue": "^3.6.0",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1",
+    "vuetify": "^3.9.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "@types/node": "^24.3.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "tailwindcss": "^4.1.12",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.3",
+    "vue-tsc": "^3.0.6"
+  }
+}
