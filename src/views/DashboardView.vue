@@ -54,13 +54,13 @@ const activities = [
         </section>
 
         <div class="dashboard-grid dashboard-grid--top">
-          <section class="data-panel activity-chart">
+          <section v-reveal class="data-panel activity-chart">
             <header><div><h2>Atividade por bairro</h2><p>Interações registradas no período</p></div><div class="legend"><span><i></i>Atual</span><span><i></i>Anterior</span></div></header>
             <div class="activity-chart__plot"><div v-for="(bar,i) in [42,68,51,83,64,92,72,86,59,95,78,88]" :key="i"><i :style="{height:`${Math.max(18,bar-18)}%`}"></i><b :style="{height:`${bar}%`}"></b></div></div>
             <div class="activity-chart__axis"><span>01 AGO</span><span>08 AGO</span><span>15 AGO</span><span>22 AGO</span><span>31 AGO</span></div>
           </section>
 
-          <section class="data-panel distribution">
+          <section v-reveal="100" class="data-panel distribution">
             <header><div><h2>Demandas por tema</h2><p>Distribuição no período</p></div></header>
             <div class="distribution__chart"><div><strong>{{ fmt(186) }}</strong><span>demandas</span></div></div>
             <dl><div><dt>Infraestrutura</dt><dd>38%</dd></div><div><dt>Saúde</dt><dd>26%</dd></div><div><dt>Educação</dt><dd>18%</dd></div><div><dt>Outros</dt><dd>18%</dd></div></dl>
@@ -68,18 +68,18 @@ const activities = [
         </div>
 
         <div class="dashboard-grid">
-          <section class="data-panel neighborhood-panel">
+          <section v-reveal class="data-panel neighborhood-panel">
             <header><div><h2>Volume por bairro</h2><p>Atendimentos e participações</p></div><button type="button" @click="noteOpen=true">Sobre os dados</button></header>
             <div class="neighborhood-list"><div v-for="item in neighborhoods" :key="item.name"><span><strong>{{ item.name }}</strong><em>{{ item.demand }} interações</em></span><i><b :style="{width:`${item.value}%`}"></b></i></div></div>
           </section>
 
-          <section class="data-panel operation-panel">
+          <section v-reveal="100" class="data-panel operation-panel">
             <header><div><h2>Agora na operação</h2><p>Atualizações recentes</p></div><span class="live"><i></i>Ao vivo</span></header>
             <ul><li v-for="activity in activities" :key="activity[0]"><span>{{ activity[2] }}</span><div><strong>{{ activity[0] }}</strong><small>{{ activity[1] }}</small></div></li></ul>
           </section>
         </div>
 
-        <aside class="responsible-note"><strong>Leitura responsável</strong><p>Este painel mostra atendimentos, eventos e participações voluntárias agregadas. Não representa pesquisa, enquete, intenção ou rastreamento de voto.</p></aside>
+        <aside v-reveal class="responsible-note"><strong>Leitura responsável</strong><p>Este painel mostra atendimentos, eventos e participações voluntárias agregadas. Não representa pesquisa, enquete, intenção ou rastreamento de voto.</p></aside>
       </div>
     </div>
 

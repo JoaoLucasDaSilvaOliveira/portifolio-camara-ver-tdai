@@ -25,7 +25,7 @@ const causes = [
   <main class="mobiliza">
     <DemoTopbar dark product="Mobiliza Litoral" />
     <header class="mobiliza-header">
-      <nav class="app-container mobiliza-nav"><a href="#topo" class="mobiliza-brand"><strong>HELENA<br/>DUARTE</strong><span>Uma voz pelo Litoral</span></a><div><a href="#propostas">Propostas</a><a href="#agenda">Agenda</a><button type="button" @click="startJoin">Participar</button></div></nav>
+      <nav class="app-container mobiliza-nav"><router-link :to="{ hash: '#topo' }" class="mobiliza-brand"><strong>HELENA<br/>DUARTE</strong><span>Uma voz pelo Litoral</span></router-link><div><router-link :to="{ hash: '#propostas' }">Propostas</router-link><router-link :to="{ hash: '#agenda' }">Agenda</router-link><button type="button" @click="startJoin">Participar</button></div></nav>
       <div id="topo" class="app-container mobiliza-hero">
         <div class="mobiliza-hero__copy">
           <p class="type-kicker">Litoral Norte · Rio Grande do Sul</p>
@@ -42,25 +42,25 @@ const causes = [
       <div class="app-container">
         <SectionIntro kicker="Compromissos regionais" title="Três prioridades, explicadas sem rodeios." description="Cada pauta tem contexto local, compromisso verificável e espaço para participação." />
         <div class="cause-list">
-          <article v-for="cause in causes" :key="cause.number"><span>{{ cause.number }}</span><h3>{{ cause.title }}</h3><p>{{ cause.text }}</p><button type="button" class="ui-link" @click="storyOpen=true">Ler compromissos</button></article>
+          <article v-for="cause in causes" :key="cause.number" v-reveal><span>{{ cause.number }}</span><h3>{{ cause.title }}</h3><p>{{ cause.text }}</p><button type="button" class="ui-link" @click="storyOpen=true">Ler compromissos</button></article>
         </div>
       </div>
     </section>
 
     <section class="mobiliza-quote section-block">
-      <div class="app-container mobiliza-quote__grid"><blockquote>“Representar começa por ouvir. E ouvir exige estar presente.”</blockquote><div><p>Política feita de perto</p><span>Encontros abertos, agenda pública e diálogo com cada cidade.</span><button type="button" class="ui-button ui-button--light" @click="startJoin">Entrar no movimento</button></div></div>
+      <div class="app-container mobiliza-quote__grid"><blockquote v-reveal>“Representar começa por ouvir. E ouvir exige estar presente.”</blockquote><div v-reveal="110"><p>Política feita de perto</p><span>Encontros abertos, agenda pública e diálogo com cada cidade.</span><button type="button" class="ui-button ui-button--light" @click="startJoin">Entrar no movimento</button></div></div>
     </section>
 
     <section id="agenda" class="mobiliza-agenda section-block">
       <div class="app-container">
         <SectionIntro kicker="Agenda pública" title="Próximos encontros no Litoral." />
         <ol>
-          <li v-for="event in [['04','SET','Tramandaí','Roda de conversa com empreendedores','19h · Centro'],['07','SET','Osório','Encontro regional da juventude','15h · Largo dos Estudantes'],['11','SET','Capão da Canoa','Caminhada pela saúde','9h · Praça Central']]" :key="event[0]"><time><strong>{{ event[0] }}</strong>{{ event[1] }}</time><div><span>{{ event[2] }}</span><h3>{{ event[3] }}</h3><p>{{ event[4] }}</p></div><span aria-hidden="true">↗</span></li>
+          <li v-for="event in [['04','SET','Tramandaí','Roda de conversa com empreendedores','19h · Centro'],['07','SET','Osório','Encontro regional da juventude','15h · Largo dos Estudantes'],['11','SET','Capão da Canoa','Caminhada pela saúde','9h · Praça Central']]" :key="event[0]" v-reveal><time><strong>{{ event[0] }}</strong>{{ event[1] }}</time><div><span>{{ event[2] }}</span><h3>{{ event[3] }}</h3><p>{{ event[4] }}</p></div><span aria-hidden="true">↗</span></li>
         </ol>
       </div>
     </section>
 
-    <section class="mobiliza-action"><div class="app-container mobiliza-action__grid"><div><p class="type-kicker">Participação voluntária</p><h2>Tem espaço para você.</h2><p>Escolha uma forma de participar e diga quais assuntos importam na sua cidade.</p></div><div><button class="mobiliza-primary" type="button" @click="startJoin">Quero participar</button><button class="mobiliza-secondary" type="button" @click="shareOpen=true">Compartilhar no WhatsApp</button></div></div></section>
+    <section class="mobiliza-action"><div v-reveal class="app-container mobiliza-action__grid"><div><p class="type-kicker">Participação voluntária</p><h2>Tem espaço para você.</h2><p>Escolha uma forma de participar e diga quais assuntos importam na sua cidade.</p></div><div><button class="mobiliza-primary" type="button" @click="startJoin">Quero participar</button><button class="mobiliza-secondary" type="button" @click="shareOpen=true">Compartilhar no WhatsApp</button></div></div></section>
     <footer class="mobiliza-footer"><div class="app-container"><strong>Helena Duarte · Uma voz pelo Litoral</strong><span>Campanha, personagem e dados fictícios.</span></div></footer>
 
     <v-dialog v-model="joinOpen" max-width="600" persistent>

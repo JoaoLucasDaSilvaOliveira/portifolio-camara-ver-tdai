@@ -22,6 +22,7 @@ import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
 import './styles.css'
 import App from './App.vue'
+import scrollReveal from './directives/scrollReveal'
 import router from './router'
 
 const vuetify = createVuetify({
@@ -70,4 +71,4 @@ const vuetify = createVuetify({
   },
 })
 
-createApp(App).use(router).use(vuetify).mount('#app')
+createApp(App).use(router).use(vuetify).directive('reveal', scrollReveal).mount('#app')

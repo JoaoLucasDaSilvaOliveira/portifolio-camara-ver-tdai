@@ -3,7 +3,7 @@ withDefaults(defineProps<{ kicker: string; title: string; description?: string; 
 </script>
 
 <template>
-  <header class="section-intro" :class="{ 'section-intro--inverse': inverse }">
+  <header v-reveal class="section-intro" :class="{ 'section-intro--inverse': inverse }">
     <p class="type-kicker">{{ kicker }}</p>
     <h2 class="type-display">{{ title }}</h2>
     <p v-if="description" class="section-intro__description">{{ description }}</p>

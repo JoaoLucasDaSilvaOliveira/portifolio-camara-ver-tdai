@@ -25,7 +25,7 @@ const search = () => { tracked.value=protocol.value.trim().length > 2 }
     <DemoTopbar product="Radar do Bairro" />
     <header class="radar-header">
       <nav class="app-container radar-nav">
-        <a href="#topo" class="radar-brand"><span>R</span><strong>Radar do Bairro<small>Serviço de escuta cidadã</small></strong></a>
+        <router-link :to="{ hash: '#topo' }" class="radar-brand"><span>R</span><strong>Radar do Bairro<small>Serviço de escuta cidadã</small></strong></router-link>
         <button type="button" class="radar-track" @click="trackOpen=true">Acompanhar protocolo</button>
       </nav>
 
@@ -53,9 +53,9 @@ const search = () => { tracked.value=protocol.value.trim().length > 2 }
       <div class="app-container">
         <SectionIntro kicker="Como funciona" title="Três passos, sem conversa perdida." description="A equipe recebe cada registro já classificado e o cidadão acompanha o andamento pelo mesmo canal." />
         <ol class="radar-steps">
-          <li><span>01</span><div><strong>Registre</strong><p>Escolha o assunto e conte onde está o problema.</p></div></li>
-          <li><span>02</span><div><strong>Encaminhamos</strong><p>A demanda entra organizada e vai para a equipe responsável.</p></div></li>
-          <li><span>03</span><div><strong>Acompanhe</strong><p>Use o protocolo para consultar cada mudança de status.</p></div></li>
+          <li v-reveal><span>01</span><div><strong>Registre</strong><p>Escolha o assunto e conte onde está o problema.</p></div></li>
+          <li v-reveal="70"><span>02</span><div><strong>Encaminhamos</strong><p>A demanda entra organizada e vai para a equipe responsável.</p></div></li>
+          <li v-reveal="140"><span>03</span><div><strong>Acompanhe</strong><p>Use o protocolo para consultar cada mudança de status.</p></div></li>
         </ol>
       </div>
     </section>
@@ -63,11 +63,11 @@ const search = () => { tracked.value=protocol.value.trim().length > 2 }
     <section class="radar-report section-block">
       <div class="app-container radar-report__grid">
         <div><p class="type-kicker">Resumo operacional</p><h2>Últimos 30 dias</h2><p>Dados agregados de atendimento. Nenhuma intenção de voto é registrada.</p></div>
-        <dl><div><dt>186</dt><dd>registros recebidos <span>+18%</span></dd></div><div><dt>87</dt><dd>demandas resolvidas <span>+24%</span></dd></div><div><dt>4 dias</dt><dd>tempo médio <span>−1,5 dia</span></dd></div><div><dt>9</dt><dd>bairros ativos <span>+2</span></dd></div></dl>
+        <dl v-reveal><div><dt>186</dt><dd>registros recebidos <span>+18%</span></dd></div><div><dt>87</dt><dd>demandas resolvidas <span>+24%</span></dd></div><div><dt>4 dias</dt><dd>tempo médio <span>−1,5 dia</span></dd></div><div><dt>9</dt><dd>bairros ativos <span>+2</span></dd></div></dl>
       </div>
     </section>
 
-    <section class="radar-cta section-block"><div class="app-container radar-cta__inner"><div><p class="type-kicker">Canal aberto</p><h2>Ajude a equipe a enxergar sua rua.</h2></div><button class="ui-button ui-button--ink" type="button" @click="reset">Fazer um registro</button></div></section>
+    <section class="radar-cta section-block"><div v-reveal class="app-container radar-cta__inner"><div><p class="type-kicker">Canal aberto</p><h2>Ajude a equipe a enxergar sua rua.</h2></div><button class="ui-button ui-button--ink" type="button" @click="reset">Fazer um registro</button></div></section>
     <footer class="radar-footer"><div class="app-container"><strong>Radar do Bairro</strong><span>Nenhum dado é enviado ou armazenado nesta demonstração.</span></div></footer>
 
     <v-dialog v-model="dialog" max-width="650" persistent>

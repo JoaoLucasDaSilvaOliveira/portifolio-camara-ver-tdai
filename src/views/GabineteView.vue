@@ -23,8 +23,8 @@ const visibleProjects = computed(() => activeFilter.value === 'Todos' ? projects
     <DemoTopbar product="Gabinete Aberto" />
     <header class="gabinete-header">
       <nav class="app-container gabinete-nav">
-        <a href="#topo" class="gabinete-brand"><strong>Helena Duarte</strong><span>Vereadora · Litoral Norte</span></a>
-        <div class="gabinete-nav__links"><a href="#entregas">Entregas</a><a href="#projetos">Projetos</a><a href="#agenda">Agenda</a></div>
+        <router-link :to="{ hash: '#topo' }" class="gabinete-brand"><strong>Helena Duarte</strong><span>Vereadora · Litoral Norte</span></router-link>
+        <div class="gabinete-nav__links"><router-link :to="{ hash: '#entregas' }">Entregas</router-link><router-link :to="{ hash: '#projetos' }">Projetos</router-link><router-link :to="{ hash: '#agenda' }">Agenda</router-link></div>
       </nav>
 
       <div id="topo" class="app-container gabinete-hero">
@@ -34,7 +34,7 @@ const visibleProjects = computed(() => activeFilter.value === 'Todos' ? projects
           <p class="type-body">Projetos, recursos, agenda e resultados reunidos para qualquer pessoa acompanhar.</p>
           <div class="gabinete-hero__actions">
             <button class="ui-button ui-button--ink" type="button" @click="contactOpen=true">Falar com o gabinete</button>
-            <a class="ui-button ui-button--paper" href="#entregas">Ver prestação de contas</a>
+            <router-link class="ui-button ui-button--paper" :to="{ hash: '#entregas' }">Ver prestação de contas</router-link>
           </div>
         </div>
         <figure class="gabinete-portrait">
@@ -54,7 +54,7 @@ const visibleProjects = computed(() => activeFilter.value === 'Todos' ? projects
           <div><dt>1.284</dt><dd>pessoas recebidas</dd></div>
         </dl>
 
-        <div class="commitment-ledger">
+        <div v-reveal="100" class="commitment-ledger">
           <div class="commitment-ledger__headline"><span>Compromissos do mandato</span><strong>78% entregues</strong><p>Atualizado em 31 de agosto de 2026</p></div>
           <div class="commitment-ledger__progress"><i></i></div>
           <dl><div><dt>18</dt><dd>Entregues</dd></div><div><dt>07</dt><dd>Em andamento</dd></div><div><dt>03</dt><dd>Em análise</dd></div></dl>
@@ -71,7 +71,7 @@ const visibleProjects = computed(() => activeFilter.value === 'Todos' ? projects
           </div>
         </div>
         <div class="project-ledger">
-          <button v-for="project in visibleProjects" :key="project.code" type="button" class="project-ledger__row" @click="selectedProject=project">
+          <button v-for="project in visibleProjects" :key="project.code" type="button" v-reveal class="project-ledger__row" @click="selectedProject=project">
             <span class="project-ledger__code">{{ project.code }}</span>
             <div><span>{{ project.tag }}</span><strong>{{ project.title }}</strong><p>{{ project.description }}</p></div>
             <em :class="`status-${project.status.toLowerCase().replace(' ', '-')}`">{{ project.status }}</em>
@@ -85,7 +85,7 @@ const visibleProjects = computed(() => activeFilter.value === 'Todos' ? projects
       <div class="app-container gabinete-agenda__grid">
         <SectionIntro kicker="Agenda pública" title="Onde encontrar o mandato nesta semana." inverse />
         <ol>
-          <li v-for="event in [['03','SET','Escuta no bairro','São Francisco · 18h30'],['06','SET','Gabinete na praça','Centro · 10h'],['10','SET','Audiência pública','Câmara · 19h']]" :key="event[0]"><time><strong>{{ event[0] }}</strong>{{ event[1] }}</time><div><strong>{{ event[2] }}</strong><span>{{ event[3] }}</span></div><span aria-hidden="true">↗</span></li>
+          <li v-for="event in [['03','SET','Escuta no bairro','São Francisco · 18h30'],['06','SET','Gabinete na praça','Centro · 10h'],['10','SET','Audiência pública','Câmara · 19h']]" :key="event[0]" v-reveal><time><strong>{{ event[0] }}</strong>{{ event[1] }}</time><div><strong>{{ event[2] }}</strong><span>{{ event[3] }}</span></div><span aria-hidden="true">↗</span></li>
         </ol>
       </div>
     </section>

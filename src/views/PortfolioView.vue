@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import QrcodeVue from 'qrcode.vue'
 import SectionIntro from '../components/SectionIntro.vue'
 
@@ -13,10 +13,8 @@ interface Product {
 }
 
 const menuOpen = ref(false)
-const pageUrl = ref('https://seu-portfolio.vercel.app')
+const qrValue = 'https://portifolio-camara-ver-tdai.vercel.app/'
 const contactUrl = 'https://wa.me/5551991620409'
-onMounted(() => { pageUrl.value = window.location.href })
-const qrValue = computed(() => pageUrl.value)
 
 const products: Product[] = [
   { index: '01', title: 'Gabinete Aberto', kind: 'Portal de mandato', description: 'Entregas, projetos e agenda pública reunidos em um endereço que o cidadão entende.', outcome: 'Presença e transparência', route: '/gabinete-aberto' },
@@ -30,12 +28,12 @@ const products: Product[] = [
   <main class="portfolio">
     <header class="portfolio-nav">
       <div class="app-container portfolio-nav__inner">
-        <a href="#inicio" class="portfolio-brand"><span class="portfolio-brand__mark">F.</span><span>Farol Digital<small>Produtos para mandato e campanha</small></span></a>
+        <router-link :to="{ hash: '#inicio' }" class="portfolio-brand"><span class="portfolio-brand__mark">F.</span><span>Farol Digital<small>Produtos para mandato e campanha</small></span></router-link>
         <button class="portfolio-nav__toggle" type="button" :aria-expanded="menuOpen" aria-label="Abrir menu" @click="menuOpen=!menuOpen">{{ menuOpen ? 'Fechar' : 'Menu' }}</button>
         <nav class="portfolio-nav__links" :class="{ 'is-open': menuOpen }">
-          <a href="#projetos" @click="menuOpen=false">Projetos</a>
-          <a href="#processo" @click="menuOpen=false">Processo</a>
-          <a href="#contato" @click="menuOpen=false">Contato</a>
+          <router-link :to="{ hash: '#projetos' }" @click="menuOpen=false">Projetos</router-link>
+          <router-link :to="{ hash: '#processo' }" @click="menuOpen=false">Processo</router-link>
+          <router-link :to="{ hash: '#contato' }" @click="menuOpen=false">Contato</router-link>
         </nav>
       </div>
     </header>
@@ -46,7 +44,7 @@ const products: Product[] = [
         <h1 class="type-display">Produtos digitais para mandato e campanha.</h1>
         <p class="type-body">Sites e ferramentas que ajudam equipes públicas a mostrar trabalho, organizar demandas e conversar com a comunidade.</p>
         <div class="portfolio-hero__actions">
-          <a href="#projetos" class="ui-button ui-button--ink">Conhecer os projetos <span aria-hidden="true">↓</span></a>
+          <router-link :to="{ hash: '#projetos' }" class="ui-button ui-button--ink">Conhecer os projetos <span aria-hidden="true">↓</span></router-link>
           <a class="ui-button ui-button--paper" :href="contactUrl" target="_blank" rel="noopener noreferrer">Conversar sobre uma ideia</a>
         </div>
       </div>
@@ -67,7 +65,7 @@ const products: Product[] = [
       <div class="app-container">
         <SectionIntro kicker="Portfólio demonstrativo" title="Quatro produtos. Quatro problemas concretos." description="Cada projeto abaixo é navegável e foi pensado para uma situação de trabalho diferente." />
         <div class="portfolio-projects__list">
-          <router-link v-for="product in products" :key="product.route" :to="product.route" class="project-row">
+          <router-link v-for="product in products" :key="product.route" :to="product.route" v-reveal class="project-row">
             <span class="project-row__index">{{ product.index }}</span>
             <div class="project-row__main"><span>{{ product.kind }}</span><h3>{{ product.title }}</h3></div>
             <p>{{ product.description }}</p>
@@ -82,22 +80,22 @@ const products: Product[] = [
       <div class="app-container portfolio-process__grid">
         <SectionIntro kicker="Forma de trabalho" title="Um processo curto e visível." description="Sem meses de descoberta e sem surpresa na entrega. Escopo, conteúdo e publicação cabem em etapas objetivas." inverse />
         <ol class="process-list">
-          <li><span>01</span><div><strong>Diagnóstico</strong><p>Problema, público, conteúdo disponível e objetivo mensurável.</p></div></li>
-          <li><span>02</span><div><strong>Protótipo</strong><p>Uma primeira versão navegável para decidir com algo concreto na tela.</p></div></li>
-          <li><span>03</span><div><strong>Publicação</strong><p>Ajustes, domínio, testes no celular e entrega dos acessos.</p></div></li>
+          <li v-reveal><span>01</span><div><strong>Diagnóstico</strong><p>Problema, público, conteúdo disponível e objetivo mensurável.</p></div></li>
+          <li v-reveal="70"><span>02</span><div><strong>Protótipo</strong><p>Uma primeira versão navegável para decidir com algo concreto na tela.</p></div></li>
+          <li v-reveal="140"><span>03</span><div><strong>Publicação</strong><p>Ajustes, domínio, testes no celular e entrega dos acessos.</p></div></li>
         </ol>
       </div>
     </section>
 
     <section id="contato" class="portfolio-contact section-block">
       <div class="app-container portfolio-contact__grid">
-        <div>
+        <div v-reveal>
           <p class="type-kicker">Próximo passo</p>
           <h2 class="type-display">Qual problema sua equipe precisa resolver agora?</h2>
           <p class="type-body">Em vinte minutos dá para escolher um ponto de partida, fechar o escopo inicial e definir prazo.</p>
           <a class="ui-button ui-button--ink" :href="contactUrl" target="_blank" rel="noopener noreferrer">Abrir conversa</a>
         </div>
-        <div class="portfolio-contact__qr">
+        <div v-reveal="120" class="portfolio-contact__qr">
           <qrcode-vue :value="qrValue" :size="132" level="M" />
           <span>Abra este portfólio no celular</span>
         </div>
